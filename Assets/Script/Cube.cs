@@ -39,7 +39,7 @@ public class Cube : MonoBehaviour {
     void Update() {
         Vector3 pos = transform.position;
         if (pos.sqrMagnitude > 400) {
-            Debug.Log(name + " is destroied");
+            Debug.Log(name + " is destroyed");
             Destroy(gameObject);
         }
     }

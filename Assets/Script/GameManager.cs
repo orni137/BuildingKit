@@ -30,12 +30,12 @@ public class GameManager : MonoBehaviour {
     }
 
     void Start() {
-        cursor.transform.position = mouseSpacePosition(cursorZ);
+        cursor.transform.position = MouseSpacePosition(cursorZ);
         Cursor.visible = false;
         Instantiate(cubePref, birthPlace);
     }
 
-    Vector3 mouseSpacePosition(float Z) {
+    Vector3 MouseSpacePosition(float Z) {
         Camera cam = Camera.main;
         Ray ray = cam.ScreenPointToRay(Input.mousePosition);
         Vector3 origin = ray.origin;
@@ -48,7 +48,7 @@ public class GameManager : MonoBehaviour {
 
     void MoveCurrCube() {
         currCubeZ += Input.GetAxis("Mouse ScrollWheel") * 2;
-        targetPos = mouseSpacePosition(currCubeZ) + currCubeShift;
+        targetPos = MouseSpacePosition(currCubeZ) + currCubeShift;
         currCube.transform.position = targetPos;
     }
 
@@ -56,7 +56,7 @@ public class GameManager : MonoBehaviour {
         if (mouseState == MouseState.Cube) {
             MoveCurrCube();
         } else {
-            cursor.transform.position = mouseSpacePosition(cursorZ);
+            cursor.transform.position = MouseSpacePosition(cursorZ);
         }
 
         if (Time.time - lastClickTime > clickDelay) {
@@ -73,7 +73,7 @@ public class GameManager : MonoBehaviour {
                             if (go.tag == "Cube") {
                                 currCube = go.GetComponent<Cube>();
                                 currCubeZ = currCube.transform.position.z;
-                                currCubeShift = currCube.transform.position - mouseSpacePosition(currCubeZ);
+                                currCubeShift = currCube.transform.position - MouseSpacePosition(currCubeZ);
                                 targetPos = currCube.transform.position;
                                 mouseState = MouseState.Cube;
                                 firstChoosen = currCube.Choose(true);
