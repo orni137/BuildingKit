@@ -3,7 +3,7 @@
 public class MusicButton : MonoBehaviour
 {
     AudioSource music;
-    public Color color;
+    Color color;
     GameManager gm;
     bool isPlaying = false;
     Material mat;
@@ -13,7 +13,7 @@ public class MusicButton : MonoBehaviour
         music = GetComponent<AudioSource>();
         MeshRenderer mr = GetComponent<MeshRenderer>();
         mat = mr.material;
-        mat.color = color;
+        color = mat.color;
     }
 
     public void StopMusic() {
