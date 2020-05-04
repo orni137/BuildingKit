@@ -24,7 +24,7 @@ public class MusicButton : MonoBehaviour
     public void StartMusic() {
         music.Play();
         isPlaying = true;
-        mat.color = color * 2;
+        mat.color = color * 3;
     }
 
     public void ProcessMusic() {
