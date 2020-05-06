@@ -7,13 +7,24 @@ public class MusicButton : MonoBehaviour
     GameManager gm;
     bool isPlaying = false;
     Material mat;
-    // Start is called before the first frame update
+    public float rotationSpeed = 0.5f;
+    float rotY= 0.0f;
+    Quaternion initRot;
+
     void Start()  {
         gm = GameManager.gm;
         music = GetComponent<AudioSource>();
         MeshRenderer mr = GetComponent<MeshRenderer>();
         mat = mr.material;
         color = mat.color;
+        initRot = transform.localRotation;
+    }
+
+    private void FixedUpdate() {
+        rotY += rotationSpeed;
+        if (rotY >= 360) rotY -= 360;
+        if (rotY < 0) rotY += 360;
+        transform.localRotation = initRot * Quaternion.Euler(0, rotY, 0);
     }
 
     public void StopMusic() {
